@@ -6,5 +6,7 @@ import java.util.List;
 
 public interface IRolService {
 
+    RolModel getRolForName(String name);
+
     List<RolModel> getRoles();
 }

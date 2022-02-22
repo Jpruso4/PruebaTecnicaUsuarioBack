@@ -1,10 +1,8 @@
 package octans.co.com.prueba.mapper.impl;
 
-import lombok.AllArgsConstructor;
 import octans.co.com.prueba.entitie.Rol;
 import octans.co.com.prueba.mapper.IRolMapper;
 import octans.co.com.prueba.model.RolModel;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.LinkedList;

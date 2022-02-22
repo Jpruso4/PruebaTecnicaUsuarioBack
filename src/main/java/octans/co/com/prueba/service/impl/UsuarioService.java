@@ -4,6 +4,7 @@ import octans.co.com.prueba.dao.IUsuarioDao;
 import octans.co.com.prueba.entitie.Usuario;
 import octans.co.com.prueba.mapper.IUsuarioMapper;
 import octans.co.com.prueba.model.UsuarioModel;
+import octans.co.com.prueba.service.IRolService;
 import octans.co.com.prueba.service.IUsuarioService;
 import octans.co.com.prueba.util.Constantes;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +17,13 @@ public class UsuarioService implements IUsuarioService {
 
     private final IUsuarioMapper usuarioMapper;
     private final IUsuarioDao usuarioDao;
+    private final IRolService rolService;
 
     @Autowired
-    public UsuarioService(IUsuarioMapper usuarioMapper, IUsuarioDao usuarioDao) {
+    public UsuarioService(IUsuarioMapper usuarioMapper, IUsuarioDao usuarioDao, IRolService rolService) {
         this.usuarioMapper = usuarioMapper;
         this.usuarioDao = usuarioDao;
+        this.rolService = rolService;
     }
 
     @Override
@@ -40,6 +43,7 @@ public class UsuarioService implements IUsuarioService {
     @Override
     public UsuarioModel modifiedUsuario(UsuarioModel usuarioModel) {
         usuarioDao.findById(usuarioModel.getIdUsuario()).orElseThrow(() -> new RuntimeException(Constantes.MENSAJE_NULO));
+        usuarioModel.setRol(rolService.getRolForName(usuarioModel.getRol().getNombre()));
         Usuario usuario = usuarioMapper.mapFromDTO(usuarioModel);
         return usuarioMapper.mapFromEntity(usuarioDao.save(usuario));
     }

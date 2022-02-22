@@ -23,8 +23,14 @@ public class RolService implements IRolService {
     }
 
     @Override
+    public RolModel getRolForName(String name){
+        return rolMapper.mapFromEntity(rolDao.getByNombre(name));
+    }
+
+    @Override
     public List<RolModel> getRoles() {
         List<Rol> listRol = rolDao.findAll();
         return rolMapper.mapListRol(listRol);
     }
+
 }

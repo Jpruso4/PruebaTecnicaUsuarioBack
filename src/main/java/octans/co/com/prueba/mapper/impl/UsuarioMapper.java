@@ -43,6 +43,11 @@ public class UsuarioMapper implements IUsuarioMapper {
         usuario.setRol(rol);
         usuario.setNombre(usuarioModel.getNombre());
         usuario.setActivo(usuarioModel.getActivo());
+        if(usuarioModel.getActivo().equals("Sí"))
+            usuario.setActivo("S");
+        else
+            if (usuarioModel.getActivo().equals("No"))
+                usuario.setActivo("N");
         return usuario;
     }
 
