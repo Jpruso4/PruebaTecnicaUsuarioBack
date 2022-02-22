@@ -49,9 +49,8 @@ public class UsuarioMapper implements IUsuarioMapper {
     @Override
     public List<UsuarioModel> mapListUsuario(List<Usuario> listUsuario) {
         List<UsuarioModel> listUsuarioModel = new LinkedList<>();
-        for(Usuario usuario: listUsuario){
+        for(Usuario usuario: listUsuario)
             listUsuarioModel.add(mapFromEntity(usuario));
-        }
         return listUsuarioModel;
     }
 }
